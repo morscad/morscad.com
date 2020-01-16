@@ -1,18 +1,18 @@
 import React from "react"
-import { graphql } from "gatsby"
-import Img from "gatsby-image"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
+import Img from "gatsby-image"
 
-const IndexPage = ({ data }) => {
-  const pageTitle = "home"
+const About = ({ data }) => {
+  const pageTitle = "about"
   const [{ title, content, wordpress_id }] = data.allWordpressPage.nodes.filter(
     node => node.slug === pageTitle
   )
   const [{ localFile }] = data.allWordpressWpMedia.nodes.filter(
     node => node.post === wordpress_id
   )
+
   return (
     <Layout section={pageTitle}>
       <SEO
@@ -26,7 +26,7 @@ const IndexPage = ({ data }) => {
   )
 }
 
-export default IndexPage
+export default About
 export const pageData = graphql`
   {
     allWordpressPage {
