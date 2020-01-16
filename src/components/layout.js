@@ -14,18 +14,19 @@ import "./layout.css"
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
-      site {
-        siteMetadata {
-          title
+    {
+      allWordpressSiteMetadata {
+        nodes {
+          description
+          name
         }
       }
     }
   `)
-
+  console.log(data);
   return (
     <>
-      <Header siteTitle={data.site.siteMetadata.title} />
+      <Header siteTitle={data.allWordpressSiteMetadata.nodes[0].name} />
       <div
         style={{
           margin: `0 auto`,
@@ -35,11 +36,6 @@ const Layout = ({ children }) => {
         }}
       >
         <main>{children}</main>
-        <footer>
-          © {new Date().getFullYear()}, Built with
-          {` `}
-          <a href="https://www.gatsbyjs.org">Gatsby</a>
-        </footer>
       </div>
     </>
   )
