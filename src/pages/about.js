@@ -1,8 +1,7 @@
 import React from "react"
 
-import Layout from "../components/layout"
-import SEO from "../components/seo"
 import Img from "gatsby-image"
+import MainLayout from "../components/layouts/MainLayout"
 
 const About = ({ data }) => {
   const pageTitle = "about"
@@ -14,15 +13,9 @@ const About = ({ data }) => {
   )
 
   return (
-    <Layout section={pageTitle}>
-      <SEO
-        title={`${data.allWordpressSiteMetadata.nodes[0].name} | ${title}`}
-        description={data.allWordpressSiteMetadata.nodes[0].description}
-      />
-      <h1>{title}</h1>
-      <div dangerouslySetInnerHTML={{ __html: content }}></div>
-      <Img fluid={localFile.childImageSharp.fluid} />
-    </Layout>
+    <MainLayout section={pageTitle}>
+
+    </MainLayout>
   )
 }
 
