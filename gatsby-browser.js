@@ -5,3 +5,9 @@
  */
 
 // You can delete this file if you're not using it
+import React from "react"
+import { MainContextProvider } from "./src/context/MainContext"
+
+export const wrapRootElement = ({ element }) => (
+  <MainContextProvider>{element}</MainContextProvider>
+)

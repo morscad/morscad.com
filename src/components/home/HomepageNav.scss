@@ -12,12 +12,23 @@
     flex-direction: row;
     flex-wrap: wrap;
   }
+  position: relative;
   display: flex;
   flex-direction: column;
   flex-wrap: nowrap;
 
 }
-
+.initContainer {
+  top: 100vh;
+}
+.animateContainerIn {
+  top: 0;
+  transition: all .5s ease-out;
+}
+.animateContainerOut {
+  top: -100vh;
+  transition: all .5s ease-in-out;
+}
 .siteLogo {
   @include lg {
     width: 30%;
@@ -88,4 +99,13 @@
       border: 1px solid rgba(255, 255, 255, 0);
     }
   }
+}
+.initButton {
+  opacity: 0;
+  transform: scale(0,0);
+}
+
+.animateButtonIn {
+  opacity: 1;
+  transform: scale(1,1);
 }

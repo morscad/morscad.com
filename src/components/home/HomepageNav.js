@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import Img from "gatsby-image"
 import { navigate} from "gatsby"
-
-import { gsap, Power3, TimelineMax } from "gsap";
 
 import './HomepageNav.scss';
 import useImageStaticQuery from "../../helpers/useImageQuery"
@@ -11,44 +9,53 @@ const HomepageNav = () => {
   const omarLogo = useImageStaticQuery('omarfaleh-logo.png');
   const morscadLogo = useImageStaticQuery('morscad-logo.png');
   const [init, setInit] = useState(false);
+  const [buttonState, setButtonState] = useState('initButton');
+  const [containerState, setContainerState] = useState('initContainer');
 
-  const animateOut = () => {
-    gsap.to(".mainNavInnerContainer", .5, {scale: 0.6, opacity: 0,  ease: Power3.easeOut, onComplete: animateOutComplete });
+  const animateOut = (destination) => {
+    setContainerState('animateContainerOut');
+    setTimeout(() => {
+      animateOutComplete(destination);
+    }, 500)
   }
 
-  const animateOutComplete = () => {
-    navigate("/about")
+  const animateOutComplete = (destination) => {
+    navigate(destination);
   }
 
   useEffect(() => {
     if (!init) {
-
-      gsap.set(".active", {scale: 0, opacity: 0 });
-      gsap.from(".mainNavInnerContainer", .5, {scale: 0.6, opacity: 0,  ease: Power3.easeIn });
-      gsap.to(".active", .5, {scale: 1, opacity: 1, delay: .2,  ease: Power3.easeIn });
+      setContainerState('animateContainerIn');
+      setTimeout(() => {
+        setButtonState('animateButtonIn');
+      }, 500)
       setInit(true)
     }
   }, [init]);
 
   return (<>
     <div className={'mainNavOuterContainer'}>
-      <div className={'mainNavInnerContainer'}>
-        <div className={'mainNavBoxFourth active'}>Portfolio</div>
+      <div className={`mainNavInnerContainer ${containerState}`}>
+        <div className={`mainNavBoxFourth active ${buttonState}`} onClick={() => {
+          animateOut('/portfolio')
+        }}>Portfolio</div>
         <div className={'mainNavBoxFourth inactive'}></div>
         <div className={'mainNavBoxFourth inactive'}></div>
-        <div className={'mainNavBoxFourth active'} onClick={animateOut}>About</div>
+        <div className={`mainNavBoxFourth active ${buttonState}`} onClick={() => {
+          animateOut('/about')
+        }}>About</div>
 
         <div className={'mainNavBoxThird inactive'}></div>
         <div className={'mainNavBoxThird inactive'}>
           <div className={'siteLogo'}>
-            <Img fluid={morscadLogo.childImageSharp.fluid} alt="A corgi smiling happily" />
+            <Img fluid={morscadLogo.childImageSharp.fluid} alt="Website of Omar faleh" />
           </div>
         </div>
         <div className={'mainNavBoxThird inactive'}></div>
 
         <div className={'mainNavBoxFourth inactive'}></div>
         <div className={'mainNavBoxFourth inactive'}></div>
-        <div className={'mainNavBoxFourth active'}>Contact</div>
+        <div className={`mainNavBoxFourth active ${buttonState}`}>Contact</div>
         <div className={'mainNavBoxFourth inactive'}></div>
       </div>
     </div>

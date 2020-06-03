@@ -1,10 +1,14 @@
-import React from "react"
+import React, { useContext, useEffect, useState } from "react"
 
 import Img from "gatsby-image"
 import MainLayout from "../components/layouts/MainLayout"
+import MainContext from "../context/MainContext"
 
 const About = ({ data }) => {
-  const pageTitle = "about"
+  const pageTitle = "about";
+  const [state, setState] = useContext(MainContext);
+  const [init, setInit] = useState(false);
+
   const [{ title, content, wordpress_id }] = data.allWordpressPage.nodes.filter(
     node => node.slug === pageTitle
   )
@@ -12,8 +16,14 @@ const About = ({ data }) => {
     node => node.post === wordpress_id
   )
 
+  useEffect(() => {
+    if (!init) {
+      setState({ ...state, currentSection: 'about'});
+      setInit(true);
+    }
+  }, [init]);
   return (
-    <MainLayout section={pageTitle}>
+    <MainLayout location={"about"}>
 
     </MainLayout>
   )
