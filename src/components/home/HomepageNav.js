@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
 import Img from "gatsby-image"
 import { navigate} from "gatsby"
 
@@ -6,8 +6,7 @@ import './HomepageNav.scss';
 import useImageStaticQuery from "../../helpers/useImageQuery"
 
 const HomepageNav = () => {
-  const omarLogo = useImageStaticQuery('omarfaleh-logo.png');
-  const morscadLogo = useImageStaticQuery('morscad-logo.png');
+  const logo = useImageStaticQuery(process.env.REACT_APP_SITE === "omarfaleh.com" ? 'omarfaleh-logo.png' : 'morscad-logo.png');
   const [init, setInit] = useState(false);
   const [buttonState, setButtonState] = useState('initButton');
   const [containerState, setContainerState] = useState('initContainer');
@@ -39,24 +38,24 @@ const HomepageNav = () => {
         <div className={`mainNavBoxFourth active ${buttonState}`} onClick={() => {
           animateOut('/portfolio')
         }}>Portfolio</div>
-        <div className={'mainNavBoxFourth inactive'}></div>
-        <div className={'mainNavBoxFourth inactive'}></div>
+        <div className={'mainNavBoxFourth inactive'}>&nbsp;</div>
+        <div className={'mainNavBoxFourth inactive'}>&nbsp;</div>
         <div className={`mainNavBoxFourth active ${buttonState}`} onClick={() => {
           animateOut('/about')
         }}>About</div>
 
-        <div className={'mainNavBoxThird inactive'}></div>
+        <div className={'mainNavBoxThird inactive'}>&nbsp;</div>
         <div className={'mainNavBoxThird inactive'}>
           <div className={'siteLogo'}>
-            <Img fluid={morscadLogo.childImageSharp.fluid} alt="Website of Omar faleh" />
+            <Img fluid={logo.childImageSharp.fluid} alt="Website of Omar faleh" />
           </div>
         </div>
-        <div className={'mainNavBoxThird inactive'}></div>
+        <div className={'mainNavBoxThird inactive'}>&nbsp;</div>
 
-        <div className={'mainNavBoxFourth inactive'}></div>
-        <div className={'mainNavBoxFourth inactive'}></div>
+        <div className={'mainNavBoxFourth inactive'}>&nbsp;</div>
+        <div className={'mainNavBoxFourth inactive'}>&nbsp;</div>
         <div className={`mainNavBoxFourth active ${buttonState}`}>Contact</div>
-        <div className={'mainNavBoxFourth inactive'}></div>
+        <div className={'mainNavBoxFourth inactive'}>&nbsp;</div>
       </div>
     </div>
   </>);
