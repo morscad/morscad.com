@@ -1,20 +1,14 @@
 import React, { useContext, useEffect, useState } from "react"
 
-import Img from "gatsby-image"
 import MainLayout from "../components/layouts/MainLayout"
 import MainContext from "../context/MainContext"
+import AboutComponent from "../components/about/AboutComponent"
+import { graphql } from "gatsby"
 
 const About = ({ data }) => {
   const pageTitle = "about";
   const [state, setState] = useContext(MainContext);
   const [init, setInit] = useState(false);
-
-  const [{ title, content, wordpress_id }] = data.allWordpressPage.nodes.filter(
-    node => node.slug === pageTitle
-  )
-  const [{ localFile }] = data.allWordpressWpMedia.nodes.filter(
-    node => node.post === wordpress_id
-  )
 
   useEffect(() => {
     if (!init) {
@@ -24,7 +18,7 @@ const About = ({ data }) => {
   }, [init]);
   return (
     <MainLayout location={"about"}>
-
+        <AboutComponent pageTitle={pageTitle} data={data} />
     </MainLayout>
   )
 }
