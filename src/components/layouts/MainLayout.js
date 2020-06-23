@@ -13,7 +13,6 @@ const MainLayout = ({ children }) => {
   const morscadLogo = useImageStaticQuery("morscad-logo.png")
 
   useEffect(() => {
-    console.log("::::::", state)
     if (!!state && !!state.currentSection) {
       if (state.currentSection === "home") {
         setTopMenuClass("menuHidden")
@@ -26,7 +25,7 @@ const MainLayout = ({ children }) => {
   }, [state])
   return (
     <>
-      <div className={`topMenu ${topMenuClass}`}>
+      <nav className={`topMenu ${topMenuClass}`}>
         <div
           className={"menuItem"}
           onClick={() => {
@@ -51,7 +50,7 @@ const MainLayout = ({ children }) => {
         >
           contact
         </div>
-      </div>
+      </nav>
       <div className={`menuLogoContainer ${logoClass}`}>
         <div
           className={"menuLogo"}
@@ -68,7 +67,7 @@ const MainLayout = ({ children }) => {
           />
         </div>
       </div>
-      <div>{children}</div>
+      <main className={"pageContant"}>{children}</main>
     </>
   )
 }
