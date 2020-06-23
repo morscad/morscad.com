@@ -1,0 +1,82 @@
+@import "../../vars";
+
+.emptyContainer {
+  width: 100%;
+  height: calc(100vh - 200px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gridContainer {
+  @include md {
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-width: $xl;
+  }
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.portfolioItem {
+  @include md {
+    width: calc(33.3% - 20px);
+    margin: 10px;
+  }
+  width: 100%;
+  border: 1px solid #666666;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+
+
+  .itemImage{
+    display: block;
+    transition: all .3s ease;
+  }
+
+  .itemCover{
+    background-color: rgba(255,255,255,0);
+    position:absolute;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    transition: all .3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    div {
+      opacity: 0;
+      transition: all .3s ease;
+      display: block;
+    }
+    div:nth-child(1) {
+      font-weight: 700;
+      font-size: 28px;
+      text-transform: uppercase;
+    }
+    div:nth-child(2) {
+      font-weight: 400;
+      font-size: 24px;
+    }
+  }
+
+  &:hover {
+    .itemImage{
+      transform: scale(1.2, 1.2);
+    }
+    .itemCover {
+      background-color: rgba(255, 255, 255, 0.9);
+      div {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+
+

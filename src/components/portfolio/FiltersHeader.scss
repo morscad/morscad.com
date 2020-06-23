@@ -1,0 +1,64 @@
+@import "../../vars";
+
+.filterContainer {
+  width: 100%;
+  max-width: $xl;
+  height: 55px;
+  display: flex;
+  flex-direction: row;
+}
+
+.categoryTitle {
+  margin-right: 10px;
+  font-size: 24px;
+  font-weight: 600;
+  padding-left: 15px;
+  padding-top: 10px;
+}
+.categoryItem {
+  padding-top: 10px;
+  margin-right: 30px;
+  font-size: 22px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all .3s ease;
+  font-weight: 500;
+  &:before {
+    content: "";
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    margin-right: 5px;
+    transition: all .3s ease;
+  }
+  &[data-selected="true"] {
+    &:before {
+      border: 2px solid rgba(0, 0, 0, 0);
+      background-color: #000000;
+    }
+  }
+  &[data-selected="false"] {
+    &:before {
+      border: 2px solid #000000;
+    }
+  }
+  &:hover {
+    color: #666666;
+    &:before {
+      border: 2px solid #666666;
+    }
+  }
+}
+.normal {
+  opacity: 1;
+  color: $black;
+}
+.highlighted {
+  opacity: 1;
+  color: $cherry-red;
+
+}
+.shadow {
+  opacity: 0.3;
+  color: $black;
+}
