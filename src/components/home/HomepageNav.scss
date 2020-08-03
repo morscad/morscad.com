@@ -1,14 +1,17 @@
 @import "../../vars";
 
 .mainNavOuterContainer {
+  @include lg {
+    padding: 100px;
+  }
   margin: 0 auto;
   width: 100%;
   max-width: $xl;
-  padding: 100px;
+  padding: 20px;
 }
 
 .mainNavInnerContainer {
-  @include lg {
+  @include md {
     flex-direction: row;
     flex-wrap: wrap;
   }
@@ -30,14 +33,26 @@
   transition: all .5s ease-in-out;
 }
 .siteLogo {
-  @include lg {
-    width: 30%;
+  @include md {
+    max-width: 120px;
+    width: 50%;
     margin: 0 auto;
   }
   width: 100%;
 }
+.mainNavBoxLogo {
+  @include md {
+    display: none;
+  }
+  width: 90px;
+  height: 115px;
+  display: block;
+  margin: 0 auto 20px;
+
+}
+
 .mainNavBoxThird {
-  @include lg {
+  @include md {
     width: 33%;
     height: $unitHeightDesktop;
   }
@@ -51,10 +66,14 @@
 }
 
 .mainNavBoxFourth {
-  @include lg {
+  @include md {
     width: 25%;
     height: $unitHeightDesktop;
+    max-width: none;
+    margin: auto;
   }
+  margin: 0 auto;
+  max-width: 400px;
   width: 100%;
   height: 100px;
   font-weight: 500;
@@ -65,13 +84,13 @@
 }
 
 .inactive {
-  @include lg {
-    display: block;
+  @include md {
+    display: flex;
   }
   display: none;
 }
 .active {
-  @include lg {
+  @include md {
     margin-bottom: 0;
   }
   margin-bottom: 20px;

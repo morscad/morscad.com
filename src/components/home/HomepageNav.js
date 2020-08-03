@@ -35,6 +35,11 @@ const HomepageNav = () => {
   return (<>
     <div className={'mainNavOuterContainer'}>
       <div className={`mainNavInnerContainer ${containerState}`}>
+
+        <div className={'mainNavBoxLogo'}>
+            <Img fluid={logo.childImageSharp.fluid} alt="Website of Omar faleh" />
+        </div>
+
         <div className={`mainNavBoxFourth active ${buttonState}`} onClick={() => {
           animateOut('/portfolio')
         }}>Portfolio</div>
