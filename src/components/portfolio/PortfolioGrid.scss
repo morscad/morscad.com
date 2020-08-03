@@ -20,10 +20,28 @@
 }
 
 .portfolioItem {
+
   @include md {
-    width: calc(33.3% - 20px);
-    margin: 10px;
+    width: calc(50% - 10px);
+    margin: 0 10px 10px 0;
+    &:nth-child(2n+0) {
+      margin: 0 0 10px 0;
+    }
+    &:nth-child(3n+0) {
+      margin: 0 10px 10px 0;
+    }
   }
+  @include lg {
+    width: calc(33.3% - 10px);
+    margin: 0 10px 10px 0;
+    &:nth-child(2n+0) {
+      margin: 0 10px 10px 0;
+    }
+    &:nth-child(3n+0) {
+      margin: 0 0 10px 0;
+    }
+  }
+  margin: 10px 0;
   width: 100%;
   border: 1px solid #666666;
   position: relative;
