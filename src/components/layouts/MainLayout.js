@@ -16,7 +16,7 @@ const MainLayout = ({ children }) => {
   const [logoClass, setLogoClass] = useState("logoHidden")
   const morscadLogo = useImageStaticQuery("morscad-logo.png")
   const morscadLogoertical = useImageStaticQuery("morscad-logo-vertical.png")
-  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
   const toggleDrawer = open => {
     setMobileMenuOpen(open)
@@ -36,7 +36,7 @@ const MainLayout = ({ children }) => {
   return (
     <>
       <div className={`topMenuMobile ${topMenuClass}`}>
-        <div onClick={toggleDrawer(true)}>
+        <div onClick={()=>{toggleDrawer(true)}}>
           <FontAwesomeIcon icon={faBars} className={`mobileMenuIcon`} />
         </div>
         <div className={`mobileMenuLogo`}>
@@ -70,7 +70,7 @@ const MainLayout = ({ children }) => {
 
       <main className={"pageContent"}>{children}</main>
 
-      <Drawer open={mobileMenuOpen} onClose={toggleDrawer(false)}>
+      <Drawer open={mobileMenuOpen} onClose={() => {toggleDrawer(false)}}>
         <div className={"menuLogo"}>
           <Link to={"/"}>
             <Img
