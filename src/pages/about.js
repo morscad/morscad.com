@@ -18,7 +18,8 @@ const About = ({ data }) => {
   }, [init]);
   return (
     <MainLayout location={"about"}>
-        <AboutComponent pageTitle={pageTitle} data={data} />
+      <h1>About</h1>
+      <AboutComponent pageTitle={pageTitle} data={data} />
     </MainLayout>
   )
 }

@@ -5,24 +5,21 @@ import MainContext from "../context/MainContext"
 import { graphql } from "gatsby"
 import FiltersHeader from "../components/portfolio/FiltersHeader"
 import PortfolioGrid from "../components/portfolio/PortfolioGrid"
+import useProjectsStaticQuery from "../helpers/useProjectsStaticQuery"
 
 const Portfolio = ({ data }) => {
-  const {
-    allWordpressPost: { nodes: posts },
-    allWordpressWpMedia: { nodes: media },
-    allWordpressCategory: { nodes: categories },
-  } = data
 
   const [state, setState] = useContext(MainContext)
   const [init, setInit] = useState(false)
-
+  const {posts, categories, media} = useProjectsStaticQuery()
   useEffect(() => {
     if (!init) {
-      console.log(posts)
-      console.log(media)
-      console.log(categories)
       categories.forEach((category) => { category.selected = true; category.highlight = false;})
-      setState({ ...state, currentSection: "portfolio", categories: categories.filter(cat => cat.name !== "Portfolio" && cat.name !== "Uncategorized") })
+      setState({ ...state,
+                  currentSection: "portfolio",
+                  posts: posts,
+                  media: media,
+                  categories: categories.filter(cat => cat.name !== "Portfolio" && cat.name !== "Uncategorized") })
       setInit(true)
     }
   }, [init])
@@ -30,67 +27,12 @@ const Portfolio = ({ data }) => {
 
   return (
     <MainLayout location={"portfolio"}>
+      <h1>Portfolio</h1>
       <FiltersHeader />
-      <PortfolioGrid posts={posts} />
+      <PortfolioGrid />
     </MainLayout>
   )
 }
 
 export default Portfolio
-export const pageData = graphql`
-  {
-    allWordpressPost {
-      nodes {
-        wordpress_id
-        slug
-        title
-        date
-        categories {
-          id
-          name
-        }
-        featured_media {
-          id
-          media_type
-          localFile {
-            childImageSharp {
-              fluid(quality: 100) {
-                ...GatsbyImageSharpFluid
-                presentationWidth
-              }
-            }
-          }
-        }
-        tags {
-          id
-          name
-        }
-        agency
-        video
-        url
-      }
-    }
-    allWordpressWpMedia {
-      nodes {
-        post
-        source_url
-        localFile {
-          childImageSharp {
-            fluid(quality: 100) {
-              ...GatsbyImageSharpFluid
-              presentationWidth
-            }
-          }
-        }
-      }
-    }
-    allWordpressCategory {
-      nodes {
-        id
-        name
-        slug
-        count
-      }
-    }
-  }
-`
+
