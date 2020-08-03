@@ -1,6 +1,5 @@
 import React from "react"
 import "./AboutComponent.scss"
-import EdgeBox from "../common/EdgeBox"
 import Img from "gatsby-image"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
@@ -10,7 +9,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons"
 
 const AboutComponent = ({ pageTitle, data }) => {
-  const [{ title, content, wordpress_id }] = data.allWordpressPage.nodes.filter(
+  const [{ content, wordpress_id }] = data.allWordpressPage.nodes.filter(
     node => node.slug === pageTitle
   )
   const [{ localFile }] = data.allWordpressWpMedia.nodes.filter(
@@ -19,7 +18,6 @@ const AboutComponent = ({ pageTitle, data }) => {
   )
 
   return (
-    <EdgeBox>
       <div className={"about"}>
         <aside>
           <Img
@@ -27,7 +25,6 @@ const AboutComponent = ({ pageTitle, data }) => {
             alt="Website of Omar faleh"
           />
           <div className={"social"}>
-            <div className={"pretext"}>Stalk me:</div>
             <div className={"socialIcon"}>
               <a
                 href={"https://www.instagram.com/morscad.creative.tech/"}
@@ -61,14 +58,12 @@ const AboutComponent = ({ pageTitle, data }) => {
           </div>
         </aside>
         <section>
-          <h1 className={"title"}>{title}</h1>
           <article
             className={"content"}
             dangerouslySetInnerHTML={{ __html: content }}
           />
         </section>
       </div>
-    </EdgeBox>
   )
 }
 export default AboutComponent
