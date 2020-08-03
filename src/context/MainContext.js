@@ -6,7 +6,7 @@ const defaultState = {
 const MainContext = React.createContext(defaultState)
 
 const MainContextProvider = ({children}) => {
-  const [state, setState] = useState({ currentSection: '', categories: [], hoveredProject: null });
+  const [state, setState] = useState({ currentSection: '', categories: [], posts: [], media: [], hoveredProject: null });
   return <MainContext.Provider value={[state, setState]}>{children}</MainContext.Provider>
 }
 
