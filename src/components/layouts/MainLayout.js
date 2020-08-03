@@ -1,16 +1,26 @@
 import React, { useContext, useEffect, useState } from "react"
+import Drawer from "@material-ui/core/Drawer"
+
+import { Link } from "gatsby"
+
 import "../../styles.scss"
 import "./MainLayout.scss"
 import useImageStaticQuery from "../../helpers/useImageQuery"
 import Img from "gatsby-image"
 import MainContext from "../../context/MainContext"
-import { navigate } from "gatsby"
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faBars } from "@fortawesome/free-solid-svg-icons"
 const MainLayout = ({ children }) => {
-  const [state, setState] = useContext(MainContext)
+  const [state, ] = useContext(MainContext)
   const [topMenuClass, setTopMenuClass] = useState("menuHidden")
   const [logoClass, setLogoClass] = useState("logoHidden")
   const morscadLogo = useImageStaticQuery("morscad-logo.png")
+  const morscadLogoertical = useImageStaticQuery("morscad-logo-vertical.png")
+  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false)
+
+  const toggleDrawer = open => {
+    setMobileMenuOpen(open)
+  }
 
   useEffect(() => {
     if (!!state && !!state.currentSection) {
@@ -25,49 +35,63 @@ const MainLayout = ({ children }) => {
   }, [state])
   return (
     <>
-      <nav className={`topMenu ${topMenuClass}`}>
-        <div
-          className={"menuItem"}
-          onClick={() => {
-            navigate("/portfolio")
-          }}
-        >
-          Portfolio
+      <div className={`topMenuMobile ${topMenuClass}`}>
+        <div onClick={toggleDrawer(true)}>
+          <FontAwesomeIcon icon={faBars} className={`mobileMenuIcon`} />
         </div>
-        <div
-          className={"menuItem"}
-          onClick={() => {
-            navigate("/about")
-          }}
-        >
-          About
-        </div>
-        <div
-          className={"menuItem"}
-          onClick={() => {
-            navigate("/contact")
-          }}
-        >
-          contact
-        </div>
-      </nav>
-      <div className={`menuLogoContainer ${logoClass}`}>
-        <div
-          className={"menuLogo"}
-          onClick={() => {
-            setState({ ...state, currentSection: 'home'});
-            setTimeout(() => {
-              navigate("/")
-            }, 500)
-          }}
-        >
+        <div className={`mobileMenuLogo`}>
           <Img
-            fluid={morscadLogo.childImageSharp.fluid}
+            fluid={morscadLogoertical.childImageSharp.fluid}
             alt="Website of Omar faleh"
           />
         </div>
       </div>
-      <main className={"pageContant"}>{children}</main>
+      <nav className={`topMenu ${topMenuClass}`}>
+        <div className={"menuItem"}>
+          <Link to={"/portfolio"}>Portfolio</Link>
+        </div>
+        <div className={"menuItem"}>
+          <Link to={"/about"}>About</Link>
+        </div>
+        <div className={"menuItem"}>
+          <Link to={"/contact"}>contact</Link>
+        </div>
+      </nav>
+      <div className={`menuLogoContainer ${logoClass}`}>
+        <div className={"menuLogo"}>
+          <Link to={"/"}>
+            <Img
+              fluid={morscadLogo.childImageSharp.fluid}
+              alt="Website of Omar faleh"
+            />
+          </Link>
+        </div>
+      </div>
+
+      <main className={"pageContent"}>{children}</main>
+
+      <Drawer open={mobileMenuOpen} onClose={toggleDrawer(false)}>
+        <div className={"menuLogo"}>
+          <Link to={"/"}>
+            <Img
+              fluid={morscadLogo.childImageSharp.fluid}
+              alt="Website of Omar faleh"
+            />
+          </Link>
+        </div>
+
+        <div className={"mobileMenuDrawer"}>
+          <div className={"menuItem"}>
+            <Link to={"/portfolio"}>Portfolio</Link>
+          </div>
+          <div className={"menuItem"}>
+            <Link to={"/about"}>About</Link>
+          </div>
+          <div className={"menuItem"}>
+            <Link to={"/contact"}>contact</Link>
+          </div>
+        </div>
+      </Drawer>
     </>
   )
 }

@@ -3,10 +3,13 @@ $logo-width: 120;
 $menu-left: 130;
 
 .topMenu {
-  display: flex;
+  @include md {
+    display: flex;
+  }
+  display: none;
   flex-direction: row;
   padding: 20px;
-  box-shadow: 0 2px 2px rgba(128,128,128, 0.3);
+  /*box-shadow: 0 2px 2px rgba(128,128,128, 0.3);*/
   position: fixed;
   left: $menu-left * 1px;
   width: 100vw;
@@ -16,19 +19,46 @@ $menu-left: 130;
   background-color: #FFFFFF;
   /*border-bottom: 1px solid #EAEAEA;*/
 }
+
+.topMenuMobile {
+  @include md {
+    display: none;
+  }
+  position: absolute;
+  display: block;
+}
+.mobileMenuIcon {
+  margin: 20px 0 0 20px;
+  font-size: 32px;
+}
+.mobileMenuLogo {
+  width: 28px;
+  margin: 10px 0 0 20px;
+}
+.mobileMenuDrawer {
+  width: 100%;
+  height: 100vh;
+  padding: 40px 120px 40px 20px;
+}
+
 .menuHidden {
-  top: -100px;
+  top: -500px;
 }
 .menuVisible {
   top: 0;
 }
 
 .menuLogoContainer {
+  @include md {
+      display: block;
+  }
+  display: none;
   top: 0;
   z-index:15;
   position: fixed;
   transition: all .3s ease;
 }
+
 .logoHidden {
   left: -300px;
 }
@@ -64,33 +94,42 @@ $menu-left: 130;
 }
 
 .menuItem {
-  padding-right: 20px;
-  font-size: 24px;
-  cursor: pointer;
-  color: $black;
-  &:before {
-    content: '+ ';
-    font-size: 16px;
-    color: $black;
+  @include md {
+    padding: 0 20px 0 0;
   }
-  &:after {
-    content: ' +';
-    font-size: 16px;
+  padding: 10px 0;
+  a {
+    font-size: 24px;
     color: $black;
-  }
-  &:hover {
-    color: $cherry-red;
-
+    text-decoration: none;
     &:before {
+      content: '+ ';
+      font-size: 16px;
       color: $black;
     }
     &:after {
+      content: ' +';
+      font-size: 16px;
       color: $black;
+    }
+    &:hover {
+      color: $cherry-red;
+
+      &:before {
+        color: $black;
+      }
+      &:after {
+        color: $black;
+      }
     }
   }
 }
 
-.pageContant {
-  margin: 90px auto 0;
-  width: calc(100% - 300px);
+.pageContent {
+  @include md {
+    margin: 90px auto 0;
+    width: calc(100% - 300px);
+  }
+  margin: 0 20px 0 80px;
+  width: calc(100% - 100px);
 }
