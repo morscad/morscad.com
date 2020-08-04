@@ -58,6 +58,7 @@ module.exports = {
       },
     },
     `gatsby-plugin-sass`,
+    `gatsby-plugin-netlify-cache`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
