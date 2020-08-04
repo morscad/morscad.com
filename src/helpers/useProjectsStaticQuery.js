@@ -32,8 +32,10 @@ const useProjectsStaticQuery = () => {
             name
           }
           agency
+          client
           video
           url
+          tech
         }
       }
       allWordpressWpMedia {

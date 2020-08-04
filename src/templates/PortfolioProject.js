@@ -11,6 +11,11 @@ import { Carousel } from "react-responsive-carousel"
 import moment from "moment"
 import GatsbyImage from "gatsby-image"
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import {
+  faLink
+} from "@fortawesome/free-solid-svg-icons"
+
 import arrowNext from "../assets/svg/arrow_next.svg"
 import arrowPrev from "../assets/svg/arrow_prev.svg"
 
@@ -73,10 +78,11 @@ const PortfolioProject = data => {
 
   return (
     <MainLayout location={"portfolio"}>
-      <div className={"projectTitle"}>
-        {project.title} ({moment(project.date).year()})
+      <div className={"projectTitleContainer"}>
+        <span className={"projectTitle"}>{project.title}</span>{" "}
+        <span className={"projectYear"}>({moment(project.date).year()})</span>
       </div>
-      <div>
+      <div className={"carouselContainer"}>
         <Carousel
           className={"slidesCarousel"}
           autoPlay={false}
@@ -84,26 +90,24 @@ const PortfolioProject = data => {
           showIndicators={true}
           showStatus={false}
           renderArrowPrev={(onClickHandler, hasPrev, label) =>
-            hasPrev && (
+
               <div
                 onClick={onClickHandler}
                 title={label}
-                className={"slideArrows"}
+                className={`slideArrows ${hasPrev ? "" : "disabled"}`}
               >
                 <img src={arrowPrev} alt={"previous project image"} />
               </div>
-            )
+
           }
           renderArrowNext={(onClickHandler, hasNext, label) =>
-            hasNext && (
               <div
                 onClick={onClickHandler}
                 title={label}
-                className={"slideArrows"}
+                className={`slideArrows ${hasNext ? "" : "disabled"}`}
               >
                 <img src={arrowNext} alt={"next project image"} />
               </div>
-            )
           }
         >
           {carouselContent.map(con => (
@@ -111,19 +115,80 @@ const PortfolioProject = data => {
           ))}
         </Carousel>
       </div>
-      <div>
-        <div
-          className={"projectBody"}
-          dangerouslySetInnerHTML={{ __html: project.excerpt }}
-        />
-        <div className={"projectInfo"}>
-          <div>
-            {" "}
-            Categories:{" "}
-            {project.categories.map(cat => (
-              <span>{cat.name}</span>
-            ))}{" "}
+      <div className={"projectInfoContainer"}>
+        <div className={"projectBody"}>
+          <div dangerouslySetInnerHTML={{ __html: project.excerpt }} />
+          <div className={"projectInfo"}>
+            <span className={"categoriesTitle"}>CATEGORIES:</span> &nbsp;
+            {project.categories &&
+              project.categories.map((cat, index) => (
+                <>
+                  <span>{cat.name.toUpperCase()}</span>
+                  {index < project.categories.length - 1 ? " | " : ""}
+                </>
+              ))}
           </div>
+        </div>
+
+        <div className={"projectMeta"}>
+          {project.url && (
+            <div>
+              <span className={"metaTitle"}> </span>
+              <span>
+                <a
+                  href={`${project.url}`}
+                  target={"_blank"}
+                  rel="noreferrer noopener"
+                >
+                 View Site <FontAwesomeIcon icon={faLink} className={"linkSymbol"} /> (External link)
+                </a>
+              </span>
+            </div>
+          )}
+
+          {project.agency && (
+            <div>
+              <span className={"metaTitle"}>Agency: </span>
+              {project.agency.split("|").length > 1 && (
+                <span>
+                  <a
+                    href={`${project.agency.split("|")[1]}`}
+                    target={"_blank"}
+                    rel="noreferrer noopener"
+                  >
+                    {project.agency.split("|")[0]}
+                  </a>
+                </span>
+              )}
+              {project.agency.split("|").length === 1 && (
+                <span>{project.agency.split("|")[0]}</span>
+              )}
+            </div>
+          )}
+          {project.client && (
+            <div>
+              <span className={"metaTitle"}>Client: </span>
+              {project.client.split("|").length > 1 && (
+                <span>
+                  <a
+                    href={`${project.client.split("|")[1]}`}
+                    target={"_blank"}
+                    rel="noreferrer noopener"
+                  >
+                    {project.client.split("|")[0]}
+                  </a>
+                </span>
+              )}
+              {project.client.split("|").length === 1 && (
+                <span>{project.client.split("|")[0]}</span>
+              )}
+            </div>
+          )}
+          {project.tech && (
+            <div>
+              <span className={"metaTitle"}>Tech: </span>{project.tech}
+            </div>
+          )}
         </div>
       </div>
     </MainLayout>
