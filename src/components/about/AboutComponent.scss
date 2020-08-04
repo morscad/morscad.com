@@ -45,7 +45,10 @@
       font-size: 32px;
     }
     .content {
-      font-size: 24px;
+      @include md {
+        font-size: 24px;
+      }
+      font-size: 20px;
 
       p{
         margin: 0 0 10px 0;
