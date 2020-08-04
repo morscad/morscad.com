@@ -3,7 +3,7 @@ import { useStaticQuery, graphql } from "gatsby" // to query for image data
 const useProjectsStaticQuery = () => {
   const data = useStaticQuery(graphql`
     query AllPosts {
-    allWordpressPost {
+    allWordpressPost(sort: {fields: date, order: DESC}) {
         nodes {
           wordpress_id
           slug
