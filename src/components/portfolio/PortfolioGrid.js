@@ -11,7 +11,7 @@ const PortfolioGrid = () => {
   const [state, setState] = useContext(MainContext)
   const [projects, setProjects] = useState([])
   useEffect(() => {
-    if (has(state, 'posts')) {
+    if (has(state, "posts")) {
       const p = state.posts.filter(project => {
         return (
           intersectionBy(
@@ -29,33 +29,37 @@ const PortfolioGrid = () => {
   return (
     <>
       {projects.length === 0 && (
-        <div className={"emptyContainer"}>There are no posts that match the current search criteria</div>
+        <div className={"emptyContainer"}>
+          There are no posts that match the current search criteria
+        </div>
       )}
       {projects.length > 0 && (
         <div className={"gridContainer"}>
           {projects.map(post => {
             return (
-                <div
-                  className={"portfolioItem"}
-                  onMouseEnter={() => {
-                    setState({ ...state, hoveredProject: post })
-                  }}
-                  onMouseLeave={() => {
-                    setState({ ...state, hoveredProject: null })
-                  }}
-                >
-              <Link to={`/portfolio/project/${post.slug}`}>
+              <div
+                className={"portfolioItem"}
+                onMouseEnter={() => {
+                  setState({ ...state, hoveredProject: post })
+                }}
+                onMouseLeave={() => {
+                  setState({ ...state, hoveredProject: null })
+                }}
+              >
+                <Link to={`/portfolio/project/${post.slug}`}>
                   <div className={"itemImage"}>
                     <GatsbyImage
-                      fluid={post.featured_media.localFile.childImageSharp.fluid}
+                      fluid={
+                        post.featured_media.localFile.childImageSharp.fluid
+                      }
                     />
                   </div>
                   <div className={"itemCover"}>
                     <div>{post.title}</div>
                     <div>{moment(post.date).year()}</div>
                   </div>
-              </Link>
-                </div>
+                </Link>
+              </div>
             )
           })}
         </div>
