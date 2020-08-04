@@ -92,7 +92,7 @@ const PortfolioProject = data => {
           renderArrowPrev={(onClickHandler, hasPrev, label) =>
 
               <div
-                onClick={onClickHandler}
+                onClick={hasPrev ? onClickHandler : null}
                 title={label}
                 className={`slideArrows ${hasPrev ? "" : "disabled"}`}
               >
@@ -102,7 +102,7 @@ const PortfolioProject = data => {
           }
           renderArrowNext={(onClickHandler, hasNext, label) =>
               <div
-                onClick={onClickHandler}
+                onClick={hasNext ? onClickHandler : null}
                 title={label}
                 className={`slideArrows ${hasNext ? "" : "disabled"}`}
               >
