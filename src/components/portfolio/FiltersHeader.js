@@ -40,7 +40,7 @@ const FiltersHeader = () => {
   return (
     <div className={"filterContainer"}>
       <div className={"categoryTitle"}>Categories:</div>
-      {state.categories.map(cat => (
+      {has(state, "categories") && state.categories.length !== 0 && state.categories.map(cat => (
         <>
           {cat.name !== "Uncategorized" && cat.name !== "Portfolio" && (
             <div
