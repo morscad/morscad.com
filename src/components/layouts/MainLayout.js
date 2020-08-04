@@ -13,7 +13,9 @@ import { faBars } from "@fortawesome/free-solid-svg-icons"
 const MainLayout = ({ children }) => {
   const [state, ] = useContext(MainContext)
   const [topMenuClass, setTopMenuClass] = useState("menuHidden")
+  const [mobileMenuClass, setMobileMenuClass] = useState("mobileMenuHidden")
   const [logoClass, setLogoClass] = useState("logoHidden")
+  const [containerClass, setContainerClass] = useState("logoHidden")
   const morscadLogo = useImageStaticQuery("morscad-logo.png")
   const morscadLogoertical = useImageStaticQuery("morscad-logo-vertical.png")
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -26,16 +28,20 @@ const MainLayout = ({ children }) => {
     if (!!state && !!state.currentSection) {
       if (state.currentSection === "home") {
         setTopMenuClass("menuHidden")
+        setMobileMenuClass("mobileMenuHidden")
         setLogoClass("logoHidden")
+        setContainerClass("homepageContent")
       } else {
         setTopMenuClass("menuVisible")
+        setMobileMenuClass("mobileMenuVisible")
         setLogoClass("logoVisible")
+        setContainerClass("pageContent")
       }
     }
   }, [state])
   return (
     <>
-      <div className={`topMenuMobile ${topMenuClass}`}>
+      <div className={`topMenuMobile ${mobileMenuClass}`}>
         <div onClick={()=>{toggleDrawer(true)}}>
           <FontAwesomeIcon icon={faBars} className={`mobileMenuIcon`} />
         </div>
@@ -54,7 +60,7 @@ const MainLayout = ({ children }) => {
           <Link to={"/about"}>About</Link>
         </div>
         <div className={"menuItem"}>
-          <Link to={"/contact"}>contact</Link>
+          <Link to={"/contact"}>Contact</Link>
         </div>
       </nav>
       <div className={`menuLogoContainer ${logoClass}`}>
@@ -68,7 +74,7 @@ const MainLayout = ({ children }) => {
         </div>
       </div>
 
-      <main className={"pageContent"}>{children}</main>
+      <main className={containerClass}>{children}</main>
 
       <Drawer open={mobileMenuOpen} onClose={() => {toggleDrawer(false)}}>
         <div className={"menuLogo"}>
@@ -88,7 +94,7 @@ const MainLayout = ({ children }) => {
             <Link to={"/about"}>About</Link>
           </div>
           <div className={"menuItem"}>
-            <Link to={"/contact"}>contact</Link>
+            <Link to={"/contact"}>Contact</Link>
           </div>
         </div>
       </Drawer>
