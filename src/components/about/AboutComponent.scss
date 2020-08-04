@@ -1,11 +1,18 @@
 @import '../../vars';
 
 .about {
-  display: flex;
-  flex-direction: row;
+  @include md {
+    display: flex;
+    flex-direction: row;
+  }
+  flex-direction: column;
   aside {
-    width: 35%;
-    overflow: hidden;
+    @include md {
+      width: 35%;
+      overflow: hidden;
+    }
+    margin-bottom: 20px;
+    width: 100%;
     img {
       width: 100%;
       height: auto;
@@ -37,8 +44,11 @@
     }
   }
   section {
-    width: 65%;
-    padding-left: 20px;
+    @include md {
+      width: 65%;
+      padding-left: 20px;
+    }
+    width: 100%;
     .title {
       text-transform: uppercase;
       margin: 0;

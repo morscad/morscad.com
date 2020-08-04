@@ -1,8 +1,11 @@
 @import "../vars";
 
 .projectTitleContainer {
-  padding-top: 10px;
-  margin: 0 0 30px 0;
+  @include md {
+    padding-top: 10px;
+  }
+    margin: 0 0 30px 0;
+  padding-top: 25px;
 }
 .projectTitle {
   font-size: 48px;
@@ -15,7 +18,11 @@
 }
 
 .carouselContainer {
-  width: 70%;
+  @include md {
+    width: 70%;
+    box-shadow: none;
+  }
+  width: 100%;
 }
 .slidesCarousel {
   .carousel {
@@ -73,10 +80,12 @@
 .projectBody {
   @include md {
     width: 70%;
+    padding-left: 30px;
+    padding-right: 30px;
   }
   width: 100%;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-left: 0;
+  padding-right: 0;
   margin-bottom: 20px;
   p {
     font-size: 24px;
