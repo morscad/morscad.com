@@ -1,0 +1,42 @@
+@import "../../vars";
+
+.inputWrapper {
+  @include md {
+    width: 70%;
+  }
+  margin-top: 60px;
+  width: 100%;
+}
+
+.inputContainer {
+  margin: 0 0 20px 0;
+}
+
+.submitContainer {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.submitBtn {
+  width: 120px;
+  height: 40px;
+  background-color: $black;
+  color: #FFFFFF;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: .3s ease;
+
+  cursor: pointer;
+  &:hover {
+    background-color: $cherry-red;
+    color: $black;
+  }
+}
+
+.confirmationMessage {
+  text-align: center;
+  margin-top: 120px;
+}

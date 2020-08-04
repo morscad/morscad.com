@@ -59,7 +59,9 @@ const HomepageNav = () => {
 
         <div className={'mainNavBoxFourth inactive'}>&nbsp;</div>
         <div className={'mainNavBoxFourth inactive'}>&nbsp;</div>
-        <div className={`mainNavBoxFourth active ${buttonState}`}>Contact</div>
+        <div className={`mainNavBoxFourth active ${buttonState}`}  onClick={() => {
+          animateOut('/contact')
+        }}>Contact</div>
         <div className={'mainNavBoxFourth inactive'}>&nbsp;</div>
       </div>
     </div>
