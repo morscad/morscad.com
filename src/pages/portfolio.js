@@ -2,12 +2,10 @@ import React, { useContext, useEffect, useState } from "react"
 
 import MainLayout from "../components/layouts/MainLayout"
 import MainContext from "../context/MainContext"
-import { graphql } from "gatsby"
-import FiltersHeader from "../components/portfolio/FiltersHeader"
-import PortfolioGrid from "../components/portfolio/PortfolioGrid"
 import useProjectsStaticQuery from "../helpers/useProjectsStaticQuery"
+import PortfolioContainer from "../components/portfolio/PortfolioContainer"
 
-const Portfolio = ({ data }) => {
+const Portfolio = () => {
 
   const [state, setState] = useContext(MainContext)
   const [init, setInit] = useState(false)
@@ -27,9 +25,7 @@ const Portfolio = ({ data }) => {
 
   return (
     <MainLayout location={"portfolio"}>
-      <h1>Portfolio</h1>
-      <FiltersHeader />
-      <PortfolioGrid />
+      <PortfolioContainer pageTitle={"portfolio"} />
     </MainLayout>
   )
 }

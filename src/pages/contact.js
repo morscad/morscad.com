@@ -17,8 +17,7 @@ const About = () => {
   }, [init]);
   return (
     <MainLayout location={"contact"}>
-      <h1>Contact Omar</h1>
-      <ContactPage />
+      <ContactPage pageTitle={"contact"} />
     </MainLayout>
   )
 }

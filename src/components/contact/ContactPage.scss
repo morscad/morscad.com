@@ -1,4 +1,12 @@
 @import "../../vars";
+.contact {
+  .titleContainer {
+    @include md {
+      margin-left: 0;
+    }
+    margin-left: 40px;
+  }
+}
 
 .inputWrapper {
   @include md {

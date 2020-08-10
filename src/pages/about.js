@@ -6,7 +6,6 @@ import AboutComponent from "../components/about/AboutComponent"
 import { graphql } from "gatsby"
 
 const About = ({ data }) => {
-  const pageTitle = "about";
   const [state, setState] = useContext(MainContext);
   const [init, setInit] = useState(false);
 
@@ -18,8 +17,7 @@ const About = ({ data }) => {
   }, [init]);
   return (
     <MainLayout location={"about"}>
-      <h1>About</h1>
-      <AboutComponent pageTitle={pageTitle} data={data} />
+      <AboutComponent pageTitle={"about"} data={data} />
     </MainLayout>
   )
 }

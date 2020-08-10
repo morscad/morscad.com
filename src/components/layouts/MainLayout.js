@@ -10,16 +10,17 @@ import Img from "gatsby-image"
 import MainContext from "../../context/MainContext"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faBars } from "@fortawesome/free-solid-svg-icons"
-const MainLayout = ({ children }) => {
+
+const MainLayout = ({ location, children }) => {
   const [state, ] = useContext(MainContext)
   const [topMenuClass, setTopMenuClass] = useState("menuHidden")
   const [mobileMenuClass, setMobileMenuClass] = useState("mobileMenuHidden")
   const [logoClass, setLogoClass] = useState("logoHidden")
   const [containerClass, setContainerClass] = useState("logoHidden")
   const morscadLogo = useImageStaticQuery("morscad-logo.png")
-  const morscadLogoertical = useImageStaticQuery("morscad-logo-vertical.png")
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
+  console.log(location);
   const toggleDrawer = open => {
     setMobileMenuOpen(open)
   }
@@ -42,12 +43,13 @@ const MainLayout = ({ children }) => {
   return (
     <>
       <div className={`topMenuMobile ${mobileMenuClass}`}>
-        <div onClick={()=>{toggleDrawer(true)}}>
-          <FontAwesomeIcon icon={faBars} className={`mobileMenuIcon`} />
+        <div className={`mobileMenuHamburger`} onClick={()=>{toggleDrawer(true)}}>
+          <div><FontAwesomeIcon icon={faBars} className={`mobileMenuIcon`} /></div>
+          <div><h1>{!!location ? location.toUpperCase() : ""}</h1></div>
         </div>
         <div className={`mobileMenuLogo`}>
           <Img
-            fluid={morscadLogoertical.childImageSharp.fluid}
+            fluid={morscadLogo.childImageSharp.fluid}
             alt="Website of Omar faleh"
           />
         </div>
@@ -86,7 +88,7 @@ const MainLayout = ({ children }) => {
           </Link>
         </div>
 
-        <div className={"mobileMenuDrawer"}>
+        <nav className={"mobileMenuDrawer"}>
           <div className={"menuItem"}>
             <Link to={"/portfolio"}>Portfolio</Link>
           </div>
@@ -96,7 +98,7 @@ const MainLayout = ({ children }) => {
           <div className={"menuItem"}>
             <Link to={"/contact"}>Contact</Link>
           </div>
-        </div>
+        </nav>
       </Drawer>
     </>
   )

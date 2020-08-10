@@ -4,7 +4,7 @@
   @include md {
     padding-top: 10px;
   }
-    margin: 0 0 30px 0;
+  margin: 50px 0 30px 0;
   padding-top: 25px;
 }
 .projectTitle {
@@ -21,8 +21,10 @@
   @include md {
     width: 70%;
     box-shadow: none;
+    margin-left: 0;
   }
-  width: 100%;
+  width: calc(100% + 40px);
+  margin-left: -20px;
 }
 .slidesCarousel {
   .carousel {
@@ -31,6 +33,10 @@
       background: none;
     }
     .control-dots {
+      @include md {
+        bottom: 0;
+      }
+      bottom: -10px;
       .dot {
         opacity: 1;
         box-shadow: none;
@@ -43,13 +49,16 @@
     }
   }
   .slideArrows {
-    width: 30px;
-    display: flex;
-    cursor: pointer;
-    img {
+    @include md {
       width: 30px;
-      height: auto;
+      display: flex;
+      cursor: pointer;
+      img {
+        width: 30px;
+        height: auto;
+      }
     }
+    display: none;
   }
   .disabled {
     opacity: 0.3;
@@ -105,10 +114,11 @@
   @include md {
     width: 30%;
     text-align: left;
+    padding-left: 30px;
+    padding-right: 30px;
   }
   width: 100%;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding:0;
   text-align: left;
   a {
     color: $black;

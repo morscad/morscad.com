@@ -18,7 +18,9 @@ const AboutComponent = ({ pageTitle, data }) => {
   )
 
   return (
-      <div className={"about"}>
+    <section className={"about"}>
+      <h1 className={"titleContainer"}>{pageTitle.toUpperCase()}</h1>
+      <div className={"contentWrapper"}>
         <aside>
           <Img
             fluid={localFile.childImageSharp.fluid}
@@ -64,6 +66,7 @@ const AboutComponent = ({ pageTitle, data }) => {
           />
         </section>
       </div>
+    </section>
   )
 }
 export default AboutComponent

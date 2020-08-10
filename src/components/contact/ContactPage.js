@@ -5,7 +5,7 @@ import InputAdornment from "@material-ui/core/InputAdornment"
 
 import "./ContactPage.scss"
 
-const ContactPage = () => {
+const ContactPage = ({pageTitle}) => {
   const [isSent, send] = useState(false)
   const [values, setValues] = useState({
     name: "",
@@ -53,88 +53,91 @@ const ContactPage = () => {
     }
   }
   return (
-    <div className={"inputWrapper"}>
-      {!isSent && (
-        <>
-          <div className={"inputContainer"}>
-            <TextField
-              label="Your name"
-              id="contact_name"
-              variant="outlined"
-              fullWidth
-              error={errors.name}
-              value={values.name}
-              onChange={handleChange("name")}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start"></InputAdornment>
-                ),
-              }}
-              size="small"
-            />
-          </div>
-
-          <div className={"inputContainer"}>
-            <TextField
-              label="Your email"
-              id="contact_email"
-              variant="outlined"
-              fullWidth
-              error={errors.email}
-              value={values.email}
-              onChange={handleChange("email")}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start"></InputAdornment>
-                ),
-              }}
-              size="small"
-            />
-          </div>
-          <div className={"inputContainer"}>
-            <TextField
-              label="Subject"
-              id="contact_subject"
-              variant="outlined"
-              fullWidth
-              error={errors.subject}
-              value={values.subject}
-              onChange={handleChange("subject")}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start"></InputAdornment>
-                ),
-              }}
-              size="small"
-            />
-          </div>
-          <div className={"inputContainer"}>
-            <TextField
-              id="outlined-multiline-static"
-              label="Message"
-              multiline
-              fullWidth
-              rows={6}
-              error={errors.message}
-              value={values.message}
-              onChange={handleChange("message")}
-              variant="outlined"
-            />
-          </div>
-          <div className={"submitContainer"}>
-            <div
-              className={"submitBtn"}
-              onClick={() => {
-                sendMessage()
-              }}
-            >
-              Send
+    <section className={"contact"}>
+      <h1 className={"titleContainer"}>{pageTitle.toUpperCase()}</h1>
+      <div className={"inputWrapper"}>
+        {!isSent && (
+          <>
+            <div className={"inputContainer"}>
+              <TextField
+                label="Your name"
+                id="contact_name"
+                variant="outlined"
+                fullWidth
+                error={errors.name}
+                value={values.name}
+                onChange={handleChange("name")}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start" />
+                  ),
+                }}
+                size="small"
+              />
             </div>
-          </div>
-        </>
-      )}
-      {isSent && (<div className={'confirmationMessage'}>Thank you for contacting me, I will be in touch as soon as possible</div>)}
-    </div>
+
+            <div className={"inputContainer"}>
+              <TextField
+                label="Your email"
+                id="contact_email"
+                variant="outlined"
+                fullWidth
+                error={errors.email}
+                value={values.email}
+                onChange={handleChange("email")}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start" />
+                  ),
+                }}
+                size="small"
+              />
+            </div>
+            <div className={"inputContainer"}>
+              <TextField
+                label="Subject"
+                id="contact_subject"
+                variant="outlined"
+                fullWidth
+                error={errors.subject}
+                value={values.subject}
+                onChange={handleChange("subject")}
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start" />
+                  ),
+                }}
+                size="small"
+              />
+            </div>
+            <div className={"inputContainer"}>
+              <TextField
+                id="outlined-multiline-static"
+                label="Message"
+                multiline
+                fullWidth
+                rows={6}
+                error={errors.message}
+                value={values.message}
+                onChange={handleChange("message")}
+                variant="outlined"
+              />
+            </div>
+            <div className={"submitContainer"}>
+              <div
+                className={"submitBtn"}
+                onClick={() => {
+                  sendMessage()
+                }}
+              >
+                Send
+              </div>
+            </div>
+          </>
+        )}
+        {isSent && (<div className={'confirmationMessage'}>Thank you for contacting me, I will be in touch as soon as possible</div>)}
+      </div>
+    </section>
   )
 }
 
