@@ -189,6 +189,11 @@ const PortfolioProject = data => {
               <span className={"metaTitle"}>Tech: </span>{project.tech}
             </div>
           )}
+          {project.credits && (
+            <div>
+              <span className={"metaTitle"}>Credits: </span>{project.credits}
+            </div>
+          )}
         </div>
       </div>
     </MainLayout>
