@@ -4,6 +4,7 @@ module.exports = {
     description: `Morscad.com is the professional practice and portfolio page of of Omar Faleh, a senior interactive developer: Web (React / Angular / NodeJS), Mobile applications (React Native), interactive installations, Javascript, HTML5.`,
     author: `Omar Faleh`,
     url: "https://www.morscad.com", // No trailing slash allowed!
+    siteUrl: "https://www.morscad.com", // No trailing slash allowed!
     image: "/static/c3e2631bef5ef7a4a00f686086720761/omar_faleh.jpg", // Path to your image you placed in the 'static' folder
     twitterUsername: "@morscad",
   },
