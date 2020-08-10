@@ -1,0 +1,9 @@
+@import "../../vars";
+.portfolio {
+  .titleContainer {
+    @include md {
+      margin-left: 0;
+    }
+    margin-left: 40px;
+  }
+}
