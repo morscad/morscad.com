@@ -92,21 +92,37 @@ const PortfolioProject = data => {
           renderArrowPrev={(onClickHandler, hasPrev, label) =>
 
               <div
+                role={"button"}
+                tabIndex={"0"}
                 onClick={hasPrev ? onClickHandler : null}
+                onKeyPress={(e) => {
+                  const code = e.keyCode || e.charCode
+                  if (code === 49 && hasPrev) {
+                    onClickHandler()
+                  }
+                }}
                 title={label}
                 className={`slideArrows ${hasPrev ? "" : "disabled"}`}
               >
-                <img src={arrowPrev} alt={"previous project image"} />
+                <img src={arrowPrev} alt={"previous project"} />
               </div>
 
           }
           renderArrowNext={(onClickHandler, hasNext, label) =>
               <div
+                role={"button"}
+                tabIndex={"0"}
                 onClick={hasNext ? onClickHandler : null}
+                onKeyPress={(e) => {
+                  const code = e.keyCode || e.charCode
+                  if (code === 50 && hasNext) {
+                    onClickHandler()
+                  }
+                }}
                 title={label}
                 className={`slideArrows ${hasNext ? "" : "disabled"}`}
               >
-                <img src={arrowNext} alt={"next project image"} />
+                <img src={arrowNext} alt={"next project"} />
               </div>
           }
         >
@@ -191,7 +207,8 @@ const PortfolioProject = data => {
           )}
           {project.credits && (
             <div>
-              <span className={"metaTitle"}>Credits: </span>{project.credits}
+              <div className={"metaTitle"}>Credits</div>
+              <div  dangerouslySetInnerHTML={{ __html: project.credits}}></div>
             </div>
           )}
         </div>

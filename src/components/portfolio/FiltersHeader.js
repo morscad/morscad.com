@@ -53,8 +53,16 @@ const FiltersHeader = () => {
                   ? "shadow"
                   : "normal"
               }`}
+              role={"button"}
+              tabIndex={"0"}
               onClick={() => {
                 toggleCatSelection(cat.id)
+              }}
+              onKeyPress={(e) => {
+                const code = e.keyCode || e.charCode
+                if (code === 13) {
+                  toggleCatSelection(cat.id)
+                }
               }}
             >
               {cat.name}

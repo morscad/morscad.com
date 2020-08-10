@@ -23,7 +23,7 @@ const ContactPage = ({pageTitle}) => {
 
   const validateInput = type => {
     if (type === "email") {
-      const emailregecx = /^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/
+      const emailregecx = /^([a-zA-Z0-9_\-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(]?)$/
       return emailregecx.test(String(values.email).toLowerCase())
     } else if (type === "name" || type === "subject" || type === "message") {
       return values[type] !== ""
@@ -125,7 +125,15 @@ const ContactPage = ({pageTitle}) => {
             </div>
             <div className={"submitContainer"}>
               <div
+                role={"button"}
                 className={"submitBtn"}
+                onKeyPress={(e) => {
+                 const code = e.keyCode || e.charCode
+                  if (code === 13) {
+                    sendMessage()
+                  }
+                }}
+                tabIndex="0"
                 onClick={() => {
                   sendMessage()
                 }}

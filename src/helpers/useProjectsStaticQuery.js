@@ -36,6 +36,7 @@ const useProjectsStaticQuery = () => {
           video
           url
           tech
+          credits
         }
       }
       allWordpressWpMedia {

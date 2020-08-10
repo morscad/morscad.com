@@ -43,7 +43,16 @@ const MainLayout = ({ location, children }) => {
   return (
     <>
       <div className={`topMenuMobile ${mobileMenuClass}`}>
-        <div className={`mobileMenuHamburger`} onClick={()=>{toggleDrawer(true)}}>
+        <div className={`mobileMenuHamburger`}
+             role={"button"}
+             tabIndex={"0"}
+             onKeyPress={(e) => {
+               const code = e.keyCode || e.charCode
+               if (code === 13) {
+                 toggleDrawer(true)
+               }
+             }}
+             onClick={()=>{toggleDrawer(true)}}>
           <div><FontAwesomeIcon icon={faBars} className={`mobileMenuIcon`} /></div>
           <div><h1>{!!location ? location.toUpperCase() : ""}</h1></div>
         </div>

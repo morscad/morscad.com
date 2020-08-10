@@ -14,6 +14,8 @@
       flex-direction: row;
     }
     flex-direction: column;
+    width: 100%;
+    max-width: $xl;
     aside {
       @include md {
         width: 35%;
