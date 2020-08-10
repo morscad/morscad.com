@@ -4,6 +4,7 @@ import MainLayout from "../components/layouts/MainLayout"
 import MainContext from "../context/MainContext"
 import { graphql } from "gatsby"
 import ContactPage from "../components/contact/ContactPage"
+import SEO from "../components/system/SEO"
 
 const About = () => {
   const [state, setState] = useContext(MainContext);
@@ -17,6 +18,7 @@ const About = () => {
   }, [init]);
   return (
     <MainLayout location={"contact"}>
+      <SEO />
       <ContactPage pageTitle={"contact"} />
     </MainLayout>
   )

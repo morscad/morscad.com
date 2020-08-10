@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from "react"
 import MainLayout from "../components/layouts/MainLayout"
 import HomepageNav from "../components/home/HomepageNav"
 import MainContext from "../context/MainContext"
+import SEO from "../components/system/SEO"
 
 
 const IndexPage = () => {
@@ -17,6 +18,7 @@ const IndexPage = () => {
   }, [init]);
   return (
       <MainLayout>
+        <SEO />
         <HomepageNav />
       </MainLayout>
   )

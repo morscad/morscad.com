@@ -1,8 +1,11 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `OMAR FALEH  - Front-end / Full-stack Developer`,
+    description: `Morscad.com is the professional practice and portfolio page of of Omar Faleh, a senior interactive developer: Web (React / Angular / NodeJS), Mobile applications (React Native), interactive installations, Javascript, HTML5.`,
+    author: `@morscad`,
+    url: "https://www.morscad.com", // No trailing slash allowed!
+    image: "/static/c3e2631bef5ef7a4a00f686086720761/omar_faleh.jpg", // Path to your image you placed in the 'static' folder
+    twitterUsername: "@morscad",
   },
   plugins: [
     {

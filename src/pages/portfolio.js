@@ -4,6 +4,7 @@ import MainLayout from "../components/layouts/MainLayout"
 import MainContext from "../context/MainContext"
 import useProjectsStaticQuery from "../helpers/useProjectsStaticQuery"
 import PortfolioContainer from "../components/portfolio/PortfolioContainer"
+import SEO from "../components/system/SEO"
 
 const Portfolio = () => {
 
@@ -25,6 +26,7 @@ const Portfolio = () => {
 
   return (
     <MainLayout location={"portfolio"}>
+      <SEO />
       <PortfolioContainer pageTitle={"portfolio"} />
     </MainLayout>
   )

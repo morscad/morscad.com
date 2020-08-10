@@ -12,12 +12,11 @@ import moment from "moment"
 import GatsbyImage from "gatsby-image"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import {
-  faLink
-} from "@fortawesome/free-solid-svg-icons"
+import { faLink } from "@fortawesome/free-solid-svg-icons"
 
 import arrowNext from "../assets/svg/arrow_next.svg"
 import arrowPrev from "../assets/svg/arrow_prev.svg"
+import SEO from "../components/system/SEO"
 
 const PortfolioProject = data => {
   const {
@@ -28,7 +27,6 @@ const PortfolioProject = data => {
   const { posts, categories, media } = useProjectsStaticQuery()
   const project = posts.filter(post => post.wordpress_id === id)[0]
   const projectMedia = media.filter(md => md.post === id).reverse()
-
   const carouselContent = []
   if (!!project.video && project.video !== "") {
     carouselContent.push(
@@ -78,6 +76,13 @@ const PortfolioProject = data => {
 
   return (
     <MainLayout location={"portfolio"}>
+      <SEO
+        title={project.title}
+        description={project.excerpt}
+        image={project.featured_media.localFile.childImageSharp.fluid.src}
+        pathname={project.slug}
+        article
+      />
       <div className={"projectTitleContainer"}>
         <span className={"projectTitle"}>{project.title}</span>{" "}
         <span className={"projectYear"}>({moment(project.date).year()})</span>
@@ -89,42 +94,40 @@ const PortfolioProject = data => {
           showThumbs={false}
           showIndicators={true}
           showStatus={false}
-          renderArrowPrev={(onClickHandler, hasPrev, label) =>
-
-              <div
-                role={"button"}
-                tabIndex={"0"}
-                onClick={hasPrev ? onClickHandler : null}
-                onKeyPress={(e) => {
-                  const code = e.keyCode || e.charCode
-                  if (code === 49 && hasPrev) {
-                    onClickHandler()
-                  }
-                }}
-                title={label}
-                className={`slideArrows ${hasPrev ? "" : "disabled"}`}
-              >
-                <img src={arrowPrev} alt={"previous project"} />
-              </div>
-
-          }
-          renderArrowNext={(onClickHandler, hasNext, label) =>
-              <div
-                role={"button"}
-                tabIndex={"0"}
-                onClick={hasNext ? onClickHandler : null}
-                onKeyPress={(e) => {
-                  const code = e.keyCode || e.charCode
-                  if (code === 50 && hasNext) {
-                    onClickHandler()
-                  }
-                }}
-                title={label}
-                className={`slideArrows ${hasNext ? "" : "disabled"}`}
-              >
-                <img src={arrowNext} alt={"next project"} />
-              </div>
-          }
+          renderArrowPrev={(onClickHandler, hasPrev, label) => (
+            <div
+              role={"button"}
+              tabIndex={"0"}
+              onClick={hasPrev ? onClickHandler : null}
+              onKeyPress={e => {
+                const code = e.keyCode || e.charCode
+                if (code === 49 && hasPrev) {
+                  onClickHandler()
+                }
+              }}
+              title={label}
+              className={`slideArrows ${hasPrev ? "" : "disabled"}`}
+            >
+              <img src={arrowPrev} alt={"previous project"} />
+            </div>
+          )}
+          renderArrowNext={(onClickHandler, hasNext, label) => (
+            <div
+              role={"button"}
+              tabIndex={"0"}
+              onClick={hasNext ? onClickHandler : null}
+              onKeyPress={e => {
+                const code = e.keyCode || e.charCode
+                if (code === 50 && hasNext) {
+                  onClickHandler()
+                }
+              }}
+              title={label}
+              className={`slideArrows ${hasNext ? "" : "disabled"}`}
+            >
+              <img src={arrowNext} alt={"next project"} />
+            </div>
+          )}
         >
           {carouselContent.map(con => (
             <>{con}</>
@@ -156,7 +159,9 @@ const PortfolioProject = data => {
                   target={"_blank"}
                   rel="noreferrer noopener"
                 >
-                 View Site <FontAwesomeIcon icon={faLink} className={"linkSymbol"} /> (External link)
+                  View Site{" "}
+                  <FontAwesomeIcon icon={faLink} className={"linkSymbol"} />{" "}
+                  (External link)
                 </a>
               </span>
             </div>
@@ -202,13 +207,14 @@ const PortfolioProject = data => {
           )}
           {project.tech && (
             <div>
-              <span className={"metaTitle"}>Tech: </span>{project.tech}
+              <span className={"metaTitle"}>Tech: </span>
+              {project.tech}
             </div>
           )}
           {project.credits && (
             <div>
               <div className={"metaTitle"}>Credits</div>
-              <div  dangerouslySetInnerHTML={{ __html: project.credits}}></div>
+              <div dangerouslySetInnerHTML={{ __html: project.credits }}></div>
             </div>
           )}
         </div>

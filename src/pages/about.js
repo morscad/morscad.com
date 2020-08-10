@@ -4,19 +4,21 @@ import MainLayout from "../components/layouts/MainLayout"
 import MainContext from "../context/MainContext"
 import AboutComponent from "../components/about/AboutComponent"
 import { graphql } from "gatsby"
+import SEO from "../components/system/SEO"
 
 const About = ({ data }) => {
-  const [state, setState] = useContext(MainContext);
-  const [init, setInit] = useState(false);
+  const [state, setState] = useContext(MainContext)
+  const [init, setInit] = useState(false)
 
   useEffect(() => {
     if (!init) {
-      setState({ ...state, currentSection: 'about'});
-      setInit(true);
+      setState({ ...state, currentSection: "about" })
+      setInit(true)
     }
-  }, [init]);
+  }, [init])
   return (
     <MainLayout location={"about"}>
+      <SEO />
       <AboutComponent pageTitle={"about"} data={data} />
     </MainLayout>
   )
