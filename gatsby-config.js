@@ -61,6 +61,7 @@ module.exports = {
       },
     },
     `gatsby-plugin-sass`,
+    `gatsby-plugin-sitemap`,
     `gatsby-plugin-netlify-cache`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
@@ -75,8 +76,13 @@ module.exports = {
         display: `minimal-ui`,
       },
     },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: 'https://www.morscad.com',
+        sitemap: 'https://www.morscad.com/sitemap.xml',
+        policy: [{ userAgent: '*', allow: '/' }]
+      }
+    }
   ],
 }
