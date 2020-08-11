@@ -39,7 +39,7 @@ const FiltersHeader = () => {
 
   return (
     <div className={"filterContainer"}>
-      <div className={"categoryTitle"}>Categories:</div>
+      <h3 className={"categoryTitle"}>Categories:</h3>
       {has(state, "categories") && state.categories.length !== 0 && state.categories.map(cat => (
         <>
           {cat.name !== "Uncategorized" && cat.name !== "Portfolio" && (
@@ -65,7 +65,7 @@ const FiltersHeader = () => {
                 }
               }}
             >
-              {cat.name}
+              {cat.name} <span className={'categoryCount'}>({cat.count})</span>
             </div>
           )}
         </>
