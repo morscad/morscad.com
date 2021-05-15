@@ -27,7 +27,7 @@
     "gatsby-source-wordpress": "^3.3.26",
     "gatsby-transformer-sharp": "^2.5.12",
     "gsap": "^3.6.0",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "node-sass": "^4.14.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
@@ -36,7 +36,7 @@
     "react-id-swiper": "^2.4.0",
     "react-material-ui-carousel": "^1.8.1",
     "react-responsive-carousel": "^3.2.9",
-    "swiper": "^5.4.5"
+    "swiper": "^6.5.1"
   },
   "devDependencies": {
     "prettier": "^1.19.1"
